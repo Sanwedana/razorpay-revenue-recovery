@@ -1,16 +1,38 @@
-# React + Vite
+# 💳 Razorpay AI Revenue Recovery Agent
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An autonomous payment recovery and dunning workflow powered by **NVIDIA NIM (Llama 3.1 70B)**, **FastAPI**, and **React**. Designed for Track 3 ("AI Revenue Recovery") of the Razorpay Buildathon.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Key Features
 
-## React Compiler
+* **Autonomous Recovery Strategy Engine**: Evaluates failed transactions and dynamically outputs JSON strategies based on error signatures (e.g., `INSUFFICIENT_FUNDS`, `BANK_TIMEOUT`, `EXPIRED_CARD`).
+* **Guardrails & Circuit Breakers**: Automatically terminates retry loops after 3 unsuccessful attempts to prevent system abuse.
+* **Audit Trail**: Logs AI decisions and execution history into SQLite for transparent reporting.
+* **Modern SaaS Dashboard**: Real-time React frontend with Tailwind CSS and live server health tracking.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Architecture & Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **Frontend**: React (Vite), Tailwind CSS, Lucide Icons, Axios
+* **Backend**: FastAPI, SQLAlchemy, SQLite, Pydantic
+* **AI Orchestration**: NVIDIA NIM Endpoint (`meta/llama-3.1-70b-instruct`) via LangChain
+
+---
+
+## 🏃 Quickstart Guide
+
+### 1. Backend Setup
+```bash
+# Navigate to project root
+cd razorpay-revenue-recovery
+
+# Activate virtual environment
+.\.venv\Scripts\activate
+
+# Install dependencies
+pip install fastapi uvicorn sqlalchemy langchain-openai python-dotenv
+
+# Run FastAPI server
+uvicorn main:app --reload --port 8000
