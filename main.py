@@ -14,6 +14,10 @@ app = FastAPI(
     version="1.0.0"
 )
 
+@app.get("/")
+def read_root():
+    return {"status": "Backend is running!"}
+
 # Enable CORS for React Frontend
 app.add_middleware(
     CORSMiddleware,
